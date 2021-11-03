@@ -1,33 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { FlexContainer, Form, Label, Input, Button } from "../Styles/Styles";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
 import { getAnalytics, logEvent } from "firebase/analytics";
 
-function AddColorComponent(props) {
+function AddBrandComponent(props) {
   const { register, handleSubmit } = useForm();
-  const [buttonColor, setButtonColor] = useState("lightgray");
 
   const onSubmit = async (data) => {
     if (data.nazwa === "" || data.nazwa === null) {
-      alert("Color name is required");
+      alert("Brand name is required");
       return 0;
     }
 
     try {
       const db = getFirestore();
-      const docRef = await addDoc(collection(db, "kolory"), {
+      const docRef = await addDoc(collection(db, "marki"), {
         nazwa: data.nazwa,
-        rgb: data.rgb,
       });
-      alert(`Added new color to database with ID: ${docRef.id}`);
+      alert(`Added new Brand to database with ID: ${docRef.id}`);
 
       const analytics = getAnalytics();
-      logEvent(analytics, "add_color", {
-        rgb: data.rgb,
+      logEvent(analytics, "add_brand", {
+        nazwa: data.nazwa,
       });
     } catch (e) {
-      alert(`Error while adding new color to database: ${e}`);
+      alert(`Error while adding new Brand to database: ${e}`);
     }
   };
 
@@ -38,26 +36,14 @@ function AddColorComponent(props) {
       fullHeight={true}
       height="100vh"
     >
-      <Label>Dodawanie koloru</Label>
+      <Label>Dodawanie marki</Label>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Label for="nazwaInput">Nazwa</Label>
         <Input id="nazwaInput" {...register("nazwa")}></Input>
-        <Label for="rgbInput">RGB (np. #ff55ff)</Label>
-        <Input
-          id="rgbInput"
-          {...register("rgb")}
-          onChange={(e) => {
-            setButtonColor(e.target.value);
-          }}
-        ></Input>
-        <Button
-          style={{ backgroundColor: buttonColor, borderColor: buttonColor }}
-        >
-          Dodaj
-        </Button>
+        <Button>Dodaj</Button>
       </Form>
     </FlexContainer>
   );
 }
 
-export default AddColorComponent;
+export default AddBrandComponent;
