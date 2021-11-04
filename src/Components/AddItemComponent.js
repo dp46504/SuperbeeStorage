@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   FlexContainer,
@@ -9,8 +9,8 @@ import {
   Loader,
   Input,
 } from "../Styles/Styles";
-import { collection, addDoc, getDocs, getFirestore } from "firebase/firestore";
-import { getAnalytics, logEvent } from "firebase/analytics";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
+// import { getAnalytics, logEvent } from "firebase/analytics";
 
 function AddItemComponent(props) {
   const { register, handleSubmit } = useForm();
@@ -21,6 +21,13 @@ function AddItemComponent(props) {
   const [types, setTypes] = useState(null);
   const [sizes, setSizes] = useState(null);
   const [btnColor, setBtnColor] = useState(null);
+  const [photo, setPhoto] = useState(null);
+  let imageRef = useRef(null);
+  const fr = new FileReader();
+
+  fr.onload = function () {
+    imageRef.current.src = fr.result;
+  };
 
   useEffect(() => {
     const downloadItems = async () => {
@@ -191,6 +198,18 @@ function AddItemComponent(props) {
 
             <Label for="iloscInput">Ilosc</Label>
             <Input type="number" id="iloscInput" {...register("ilosc")}></Input>
+
+            <Label for="photoInput">Zdjęcie</Label>
+            <Input
+              type="file"
+              id="photoInput"
+              {...register("photo")}
+              onChange={(e) => {
+                setPhoto(e.target.files[0]);
+                fr.readAsDataURL(e.target.files[0]);
+              }}
+            ></Input>
+            <img ref={imageRef} width="50%" alt="Podglądowe zdjęcie"></img>
 
             <Button>Dodaj</Button>
           </Form>

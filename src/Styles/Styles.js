@@ -52,13 +52,7 @@ export const FlexContainer = styled.div`
   flex-direction: ${(props) => {
     return props.orientation;
   }};
-  height: ${(props) => {
-    if (props.height) {
-      return props.height;
-    } else {
-      return "fit-content";
-    }
-  }};
+  min-height: 100vh;
 `;
 
 export const Form = styled.form`

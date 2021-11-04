@@ -49,9 +49,9 @@ function App() {
             <MenuItem exact activeStyle={ActiveMenuItem} to="/addproject">
               Add new Project
             </MenuItem>
-            {/* <MenuItem exact activeStyle={ActiveMenuItem} to="/additem">
+            <MenuItem exact activeStyle={ActiveMenuItem} to="/additem">
               Add new Item
-            </MenuItem> */}
+            </MenuItem>
           </SubMenu>
           <MenuItem exact activeStyle={ActiveMenuItem} to="/">
             Home Page
