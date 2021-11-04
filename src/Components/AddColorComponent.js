@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FlexContainer, Form, Label, Input, Button } from "../Styles/Styles";
+import {
+  FlexContainer,
+  Form,
+  Label,
+  Input,
+  Button,
+  colors,
+} from "../Styles/Styles";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import PrivRoute from "../Helpers/PrivRoute";
 
 function AddColorComponent(props) {
   const { register, handleSubmit } = useForm();
-  const [buttonColor, setButtonColor] = useState("lightgray");
+  const [buttonColor, setButtonColor] = useState(colors.buttonBackground);
 
   const onSubmit = async (data) => {
     if (data.nazwa === "" || data.nazwa === null) {
@@ -55,7 +62,7 @@ function AddColorComponent(props) {
           <Button
             style={{ backgroundColor: buttonColor, borderColor: buttonColor }}
           >
-            Dodaj
+            <div>Dodaj</div>
           </Button>
         </Form>
       </FlexContainer>

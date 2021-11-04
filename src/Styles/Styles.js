@@ -3,13 +3,16 @@ import { NavLink } from "react-router-dom";
 
 export const colors = {
   // Light
-  menuBackground: "#5584B8",
-  bodyBackground: "#ebf4ff",
-  lightText: "#C2DEFF",
-  darkText: "#75B6FF",
-  inputBorder: "#a5d5ff",
-  buttonBorder: "#a5afc4",
-  buttonBackground: "#cbdff7",
+  menuBackground: "#9b816f",
+  bodyBackground: "#e0c3bf",
+
+  activeMenuItemText: "#e0c3bf",
+  nonactiveMenuItemText: "#af9885",
+  textColor: "#9b816f",
+
+  inputBorder: "#af9885",
+  buttonBorder: "#af9885",
+  buttonBackground: "#af9885",
 
   // Dark
 };
@@ -20,6 +23,7 @@ html, body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     min-height: 100%;
     font-weight: bold;
+    color:${colors.textColor};
   background-color: ${colors.bodyBackground};
   }
 *{box-sizing:border-box}
@@ -27,7 +31,7 @@ html, body{
 
 export const MenuItem = styled(NavLink)`
   text-decoration: none;
-  color: ${colors.lightText};
+  color: ${colors.nonactiveMenuItemText};
   font-weight: bold;
   outline: none;
   transition: all 500ms;
@@ -50,7 +54,7 @@ export const SubMenu = styled.div`
 `;
 
 export const ActiveMenuItem = {
-  color: "white",
+  color: colors.activeMenuItemText,
   textShadow: "0.3rem 0.3rem 0.8rem black",
   transform: "scale(1.5)",
 };
@@ -127,6 +131,11 @@ export const Button = styled.button`
   border: 0.15rem solid ${colors.buttonBorder};
   background-color: ${colors.buttonBackground};
   border-radius: 0.5rem;
+  & div {
+    color: white;
+    font-weight: bold;
+    mix-blend-mode: exclusion;
+  }
 
   &:active {
     transform: scale(1.15);
