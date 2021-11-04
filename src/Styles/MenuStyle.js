@@ -1,3 +1,5 @@
+import { colors } from "./Styles";
+
 export const styles = {
   bmBurgerButton: {
     position: "fixed",
@@ -23,7 +25,7 @@ export const styles = {
     height: "100%",
   },
   bmMenu: {
-    background: "#373a47",
+    background: colors.menuBackground,
     width: "100%",
     padding: "2.5em 1.5em 0",
     fontSize: "1.15em",

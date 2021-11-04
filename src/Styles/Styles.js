@@ -1,20 +1,33 @@
 import styled, { createGlobalStyle, keyframes } from "styled-components";
 import { NavLink } from "react-router-dom";
 
-export const colors = [];
+export const colors = {
+  // Light
+  menuBackground: "#5584B8",
+  bodyBackground: "#ebf4ff",
+  lightText: "#C2DEFF",
+  darkText: "#75B6FF",
+  inputBorder: "#a5d5ff",
+  buttonBorder: "#a5afc4",
+  buttonBackground: "#cbdff7",
+
+  // Dark
+};
 
 export const GlobalStyles = createGlobalStyle`
 html, body{
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     min-height: 100%;
-}
+    font-weight: bold;
+  background-color: ${colors.bodyBackground};
+  }
 *{box-sizing:border-box}
 `;
 
 export const MenuItem = styled(NavLink)`
   text-decoration: none;
-  color: lightgrey;
+  color: ${colors.lightText};
   font-weight: bold;
   outline: none;
   transition: all 500ms;
@@ -32,7 +45,7 @@ export const SubMenu = styled.div`
   & ${MenuItem} {
     display: block;
     margin: 0.8rem 0;
-    color: gray;
+    color: ${colors.darkText};
   }
 `;
 
@@ -61,6 +74,9 @@ export const Form = styled.form`
   justify-content: center;
   align-items: center;
   width: 70%;
+  & img {
+    width: fit-content;
+  }
 `;
 
 export const Label = styled.label`
@@ -73,6 +89,12 @@ export const Input = styled.input`
   width: 100%;
   text-align: center;
   margin: 0.5rem 0;
+  border: 0.15rem solid ${colors.inputBorder};
+  border-radius: 0.5rem;
+  &[type="file"] {
+    width: fit-content;
+    padding: 0.4rem;
+  }
 `;
 
 export const Select = styled.select`
@@ -80,6 +102,8 @@ export const Select = styled.select`
   width: 100%;
   text-align: center;
   margin: 0.5rem 0;
+  border: 0.15rem solid ${colors.inputBorder};
+  border-radius: 0.5rem;
 
   /* ===== Disable arrow ===== */
   /* for Firefox */
@@ -100,7 +124,9 @@ export const Button = styled.button`
   border: none;
   font-size: 1.3rem;
   transition: all 200ms;
-  border: 0.15rem solid #999999;
+  border: 0.15rem solid ${colors.buttonBorder};
+  background-color: ${colors.buttonBackground};
+  border-radius: 0.5rem;
 
   &:active {
     transform: scale(1.15);

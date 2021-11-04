@@ -145,6 +145,9 @@ function AddItemComponent(props) {
             <Select
               id="colorInput"
               {...register("kolor")}
+              onClick={(e) => {
+                setBtnColor(getColor(e.target.value));
+              }}
               onChange={(e) => {
                 setBtnColor(getColor(e.target.value));
               }}

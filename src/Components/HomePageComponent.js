@@ -1,16 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import {
-  FlexContainer,
-  Form,
-  Label,
-  Select,
-  Button,
-  Loader,
-  Input,
-} from "../Styles/Styles";
-import { collection, addDoc, getDocs, getFirestore } from "firebase/firestore";
-import { getAnalytics, logEvent } from "firebase/analytics";
+import { FlexContainer, Label, Loader } from "../Styles/Styles";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 
 function HomePageComponent(props) {
   const [loading, setLoading] = useState(true);
