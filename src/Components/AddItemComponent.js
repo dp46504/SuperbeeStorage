@@ -9,8 +9,9 @@ import {
   Loader,
   Input,
 } from "../Styles/Styles";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
-// import { getAnalytics, logEvent } from "firebase/analytics";
+import { collection, getDocs, addDoc, getFirestore } from "firebase/firestore";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 
 function AddItemComponent(props) {
   const { register, handleSubmit } = useForm();
@@ -86,25 +87,38 @@ function AddItemComponent(props) {
     console.log(
       `${data.kolor} ${data.marka} ${data.projekt} ${data.rodzaj} ${data.rozmiar} ${data.ilosc}`
     );
-    // try {
-    //   const db = getFirestore();
-    //   const docRef = await addDoc(collection(db, "przedmioty"), {
-    //     kolor: data.kolor,
-    //     rozmiar: data.rozmiar,
-    //     marka: data.marka,
-    //     projekt: data.projekt,
-    //     rodzaj: data.rodzaj,
-    //     ilosc: data.ilosc,
-    //   });
-    //   alert(`Added new Item to database with ID: ${docRef.id}`);
+    try {
+      // Uploading document to database
+      const db = getFirestore();
+      const docRef = await addDoc(collection(db, "przedmioty"), {
+        kolor: data.kolor,
+        rozmiar: data.rozmiar,
+        marka: data.marka,
+        projekt: data.projekt,
+        rodzaj: data.rodzaj,
+        ilosc: data.ilosc,
+      });
+      alert(`Added new Item to database with ID: ${docRef.id}`);
 
-    //   const analytics = getAnalytics();
-    //   logEvent(analytics, "add_item", {
-    //     rgb: data.rgb,
-    //   });
-    // } catch (e) {
-    //   alert(`Error while adding new Item to database: ${e}`);
-    // }
+      // Uploading photo to storage
+      const storage = getStorage();
+      const storageRef = ref(storage, docRef.id);
+      uploadBytes(storageRef, photo).catch((e) => {
+        alert(`Error while adding photo to storage: ${e}`);
+      });
+
+      const analytics = getAnalytics();
+      logEvent(analytics, "add_item", {
+        kolor: data.kolor,
+        rozmiar: data.rozmiar,
+        marka: data.marka,
+        projekt: data.projekt,
+        rodzaj: data.rodzaj,
+        ilosc: data.ilosc,
+      });
+    } catch (e) {
+      alert(`Error while adding new Item to database: ${e}`);
+    }
   };
 
   const getColor = (id) => {
