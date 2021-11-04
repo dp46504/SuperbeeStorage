@@ -47,7 +47,11 @@ function LoginPage(props) {
       fullHeight={true}
       height="100vh"
     >
-      <Label>{loggedIn !== null ? "ZALOGOWANY" : "NIEZALOGOWANY"}</Label>
+      <Label>
+        {loggedIn !== null
+          ? getAuth().currentUser.displayName
+          : "NIEZALOGOWANY"}
+      </Label>
       <Button
         style={{ width: "80%" }}
         onClick={() => {

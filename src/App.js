@@ -56,6 +56,9 @@ function App() {
                 Add new Item
               </MenuItem>
             </SubMenu>
+            <MenuItem exact activeStyle={ActiveMenuItem} to="/itemlist">
+              Item List
+            </MenuItem>
           </PrivComponent>
           <MenuItem exact activeStyle={ActiveMenuItem} to="/">
             Login Page
@@ -72,6 +75,7 @@ function App() {
             path="/addproject"
             component={AddProjectComponent}
           ></Route>
+          <Route exact path="/itemlist" component={HomePageComponent}></Route>
           <Route exact path="/" component={LoginPage}></Route>
         </Switch>
       </Router>
