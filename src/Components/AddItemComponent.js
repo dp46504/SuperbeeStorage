@@ -12,6 +12,7 @@ import {
 import { collection, getDocs, addDoc, getFirestore } from "firebase/firestore";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
+import PrivRoute from "../Helpers/PrivRoute";
 
 function AddItemComponent(props) {
   const { register, handleSubmit } = useForm();
@@ -133,104 +134,110 @@ function AddItemComponent(props) {
       {loading === true ? (
         <Loader>Loading...</Loader>
       ) : (
-        <FlexContainer
-          width="100%"
-          orientation="column"
-          fullHeight={true}
-          height="100vh"
-        >
-          <Label>Dodawanie przedmiotu</Label>
-          <Form onSubmit={handleSubmit(onSubmit)}>
-            <Label for="colorInput">Kolor</Label>
-            <Select
-              id="colorInput"
-              {...register("kolor")}
-              onClick={(e) => {
-                setBtnColor(getColor(e.target.value));
-              }}
-              onChange={(e) => {
-                setBtnColor(getColor(e.target.value));
-              }}
-            >
-              {colors.map((item) => {
-                return (
-                  <option key={item.id} value={item.id}>
-                    {item.data().nazwa}
-                  </option>
-                );
-              })}
-            </Select>
-            <div
-              style={{
-                width: "100%",
-                height: "2rem",
-                backgroundColor: btnColor,
-                borderRadius: "0.2rem",
-              }}
-            ></div>
+        <PrivRoute>
+          <FlexContainer
+            width="100%"
+            orientation="column"
+            fullHeight={true}
+            height="100vh"
+          >
+            <Label>Dodawanie przedmiotu</Label>
+            <Form onSubmit={handleSubmit(onSubmit)}>
+              <Label for="colorInput">Kolor</Label>
+              <Select
+                id="colorInput"
+                {...register("kolor")}
+                onClick={(e) => {
+                  setBtnColor(getColor(e.target.value));
+                }}
+                onChange={(e) => {
+                  setBtnColor(getColor(e.target.value));
+                }}
+              >
+                {colors.map((item) => {
+                  return (
+                    <option key={item.id} value={item.id}>
+                      {item.data().nazwa}
+                    </option>
+                  );
+                })}
+              </Select>
+              <div
+                style={{
+                  width: "100%",
+                  height: "2rem",
+                  backgroundColor: btnColor,
+                  borderRadius: "0.2rem",
+                }}
+              ></div>
 
-            <Label for="brandsInput">Marka</Label>
-            <Select id="brandsInput" {...register("marka")}>
-              {brands.map((item) => {
-                return (
-                  <option key={item.id} value={item.id}>
-                    {item.data().nazwa}
-                  </option>
-                );
-              })}
-            </Select>
+              <Label for="brandsInput">Marka</Label>
+              <Select id="brandsInput" {...register("marka")}>
+                {brands.map((item) => {
+                  return (
+                    <option key={item.id} value={item.id}>
+                      {item.data().nazwa}
+                    </option>
+                  );
+                })}
+              </Select>
 
-            <Label for="projectsInput">Projekt</Label>
-            <Select id="projectsInput" {...register("projekt")}>
-              {projects.map((item) => {
-                return (
-                  <option key={item.id} value={item.id}>
-                    {item.data().nazwa}
-                  </option>
-                );
-              })}
-            </Select>
+              <Label for="projectsInput">Projekt</Label>
+              <Select id="projectsInput" {...register("projekt")}>
+                {projects.map((item) => {
+                  return (
+                    <option key={item.id} value={item.id}>
+                      {item.data().nazwa}
+                    </option>
+                  );
+                })}
+              </Select>
 
-            <Label for="typesInput">Rodzaj</Label>
-            <Select id="typesInput" {...register("rodzaj")}>
-              {types.map((item) => {
-                return (
-                  <option key={item.id} value={item.id}>
-                    {item.data().nazwa}
-                  </option>
-                );
-              })}
-            </Select>
+              <Label for="typesInput">Rodzaj</Label>
+              <Select id="typesInput" {...register("rodzaj")}>
+                {types.map((item) => {
+                  return (
+                    <option key={item.id} value={item.id}>
+                      {item.data().nazwa}
+                    </option>
+                  );
+                })}
+              </Select>
 
-            <Label for="sizesInput">Rozmiar</Label>
-            <Select id="sizesInput" {...register("rozmiar")}>
-              {sizes.map((item) => {
-                return (
-                  <option key={item.id} value={item.id}>
-                    {item.data().nazwa}
-                  </option>
-                );
-              })}
-            </Select>
+              <Label for="sizesInput">Rozmiar</Label>
+              <Select id="sizesInput" {...register("rozmiar")}>
+                {sizes.map((item) => {
+                  return (
+                    <option key={item.id} value={item.id}>
+                      {item.data().nazwa}
+                    </option>
+                  );
+                })}
+              </Select>
 
-            <Label for="iloscInput">Ilosc</Label>
-            <Input type="number" id="iloscInput" {...register("ilosc")}></Input>
+              <Label for="iloscInput">Ilosc</Label>
+              <Input
+                type="number"
+                id="iloscInput"
+                {...register("ilosc")}
+              ></Input>
 
-            <Label for="photoInput">Zdjęcie</Label>
-            <Input
-              type="file"
-              id="photoInput"
-              {...register("photo")}
-              onChange={(e) => {
-                setPhoto(e.target.files[0]);
-                fr.readAsDataURL(e.target.files[0]);
-              }}
-            ></Input>
-            <img ref={imageRef} width="50%" alt="Podglądowe zdjęcie"></img>
+              <Label for="photoInput">Zdjęcie</Label>
+              <Input
+                type="file"
+                id="photoInput"
+                {...register("photo")}
+                onChange={(e) => {
+                  setPhoto(e.target.files[0]);
+                  fr.readAsDataURL(e.target.files[0]);
+                }}
+              ></Input>
+              <img ref={imageRef} width="50%" alt="Podglądowe zdjęcie"></img>
 
-            <Button>Dodaj</Button>
-          </Form>
-        </FlexContainer>
+              <Button>Dodaj</Button>
+            </Form>
+          </FlexContainer>
+        </PrivRoute>
       )}
     </>
   );

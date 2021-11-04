@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FlexContainer, Label, Loader } from "../Styles/Styles";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
+import PrivRoute from "../Helpers/PrivRoute";
 
 function HomePageComponent(props) {
   const [loading, setLoading] = useState(true);
@@ -68,97 +69,99 @@ function HomePageComponent(props) {
       {loading === true ? (
         <Loader>Loading...</Loader>
       ) : (
-        <FlexContainer
-          width="100%"
-          orientation="column"
-          fullHeight={true}
-          height="100vh"
-        >
-          <Label
-            style={{
-              borderTop: ".2rem solid black",
-              width: "100%",
-              textAlign: "center",
-            }}
+        <PrivRoute>
+          <FlexContainer
+            width="100%"
+            orientation="column"
+            fullHeight={true}
+            height="100vh"
           >
-            Kolory
-          </Label>
-          {colors.map((item) => {
-            return (
-              <div key={item.id} value={item.id}>
-                {item.data().nazwa} {item.data().rgb}
-              </div>
-            );
-          })}
+            <Label
+              style={{
+                borderTop: ".2rem solid black",
+                width: "100%",
+                textAlign: "center",
+              }}
+            >
+              Kolory
+            </Label>
+            {colors.map((item) => {
+              return (
+                <div key={item.id} value={item.id}>
+                  {item.data().nazwa} {item.data().rgb}
+                </div>
+              );
+            })}
 
-          <Label
-            style={{
-              borderTop: ".2rem solid black",
-              width: "100%",
-              textAlign: "center",
-            }}
-          >
-            Marki
-          </Label>
-          {brands.map((item) => {
-            return (
-              <div key={item.id} value={item.id}>
-                {item.data().nazwa}
-              </div>
-            );
-          })}
+            <Label
+              style={{
+                borderTop: ".2rem solid black",
+                width: "100%",
+                textAlign: "center",
+              }}
+            >
+              Marki
+            </Label>
+            {brands.map((item) => {
+              return (
+                <div key={item.id} value={item.id}>
+                  {item.data().nazwa}
+                </div>
+              );
+            })}
 
-          <Label
-            style={{
-              borderTop: ".2rem solid black",
-              width: "100%",
-              textAlign: "center",
-            }}
-          >
-            Rodzaje
-          </Label>
-          {types.map((item) => {
-            return (
-              <div key={item.id} value={item.id}>
-                {item.data().nazwa}
-              </div>
-            );
-          })}
+            <Label
+              style={{
+                borderTop: ".2rem solid black",
+                width: "100%",
+                textAlign: "center",
+              }}
+            >
+              Rodzaje
+            </Label>
+            {types.map((item) => {
+              return (
+                <div key={item.id} value={item.id}>
+                  {item.data().nazwa}
+                </div>
+              );
+            })}
 
-          <Label
-            style={{
-              borderTop: ".2rem solid black",
-              width: "100%",
-              textAlign: "center",
-            }}
-          >
-            Rozmiary
-          </Label>
-          {sizes.map((item) => {
-            return (
-              <div key={item.id} value={item.id}>
-                {item.data().nazwa}
-              </div>
-            );
-          })}
+            <Label
+              style={{
+                borderTop: ".2rem solid black",
+                width: "100%",
+                textAlign: "center",
+              }}
+            >
+              Rozmiary
+            </Label>
+            {sizes.map((item) => {
+              return (
+                <div key={item.id} value={item.id}>
+                  {item.data().nazwa}
+                </div>
+              );
+            })}
 
-          <Label
-            style={{
-              borderTop: ".2rem solid black",
-              width: "100%",
-              textAlign: "center",
-            }}
-          >
-            Projekty
-          </Label>
-          {projects.map((item) => {
-            return (
-              <div key={item.id} value={item.id}>
-                {item.data().nazwa}
-              </div>
-            );
-          })}
-        </FlexContainer>
+            <Label
+              style={{
+                borderTop: ".2rem solid black",
+                width: "100%",
+                textAlign: "center",
+              }}
+            >
+              Projekty
+            </Label>
+            {projects.map((item) => {
+              return (
+                <div key={item.id} value={item.id}>
+                  {item.data().nazwa}
+                </div>
+              );
+            })}
+          </FlexContainer>
+        </PrivRoute>
       )}
     </>
   );

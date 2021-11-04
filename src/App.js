@@ -14,7 +14,9 @@ import AddBrandComponent from "./Components/AddBrandComponent";
 import AddTypeComponent from "./Components/AddTypeComponent";
 import AddProjectComponent from "./Components/AddProjectComponent";
 import HomePageComponent from "./Components/HomePageComponent";
+import PrivComponent from "./Helpers/PrivComponent";
 import { initializeApp } from "firebase/app";
+import LoginPage from "./Components/LoginPage";
 
 function App() {
   const firebaseConfig = {
@@ -32,29 +34,31 @@ function App() {
       <GlobalStyles></GlobalStyles>
       <Router>
         <Menu isOpen={false} styles={styles}>
-          <SubMenu>
-            <MenuItem exact activeStyle={ActiveMenuItem} to="/addcolor">
-              Add new Color
-            </MenuItem>
-            <MenuItem exact activeStyle={ActiveMenuItem} to="/addsize">
-              Add new Size
-            </MenuItem>
-            <MenuItem exact activeStyle={ActiveMenuItem} to="/addbrand">
-              Add new Brand
-            </MenuItem>
-            <MenuItem exact activeStyle={ActiveMenuItem} to="/addtype">
-              Add new Type
-            </MenuItem>
+          <PrivComponent>
+            <SubMenu>
+              <MenuItem exact activeStyle={ActiveMenuItem} to="/addcolor">
+                Add new Color
+              </MenuItem>
+              <MenuItem exact activeStyle={ActiveMenuItem} to="/addsize">
+                Add new Size
+              </MenuItem>
+              <MenuItem exact activeStyle={ActiveMenuItem} to="/addbrand">
+                Add new Brand
+              </MenuItem>
+              <MenuItem exact activeStyle={ActiveMenuItem} to="/addtype">
+                Add new Type
+              </MenuItem>
 
-            <MenuItem exact activeStyle={ActiveMenuItem} to="/addproject">
-              Add new Project
-            </MenuItem>
-            <MenuItem exact activeStyle={ActiveMenuItem} to="/additem">
-              Add new Item
-            </MenuItem>
-          </SubMenu>
+              <MenuItem exact activeStyle={ActiveMenuItem} to="/addproject">
+                Add new Project
+              </MenuItem>
+              <MenuItem exact activeStyle={ActiveMenuItem} to="/additem">
+                Add new Item
+              </MenuItem>
+            </SubMenu>
+          </PrivComponent>
           <MenuItem exact activeStyle={ActiveMenuItem} to="/">
-            Home Page
+            Login Page
           </MenuItem>
         </Menu>
         <Switch>
@@ -68,7 +72,7 @@ function App() {
             path="/addproject"
             component={AddProjectComponent}
           ></Route>
-          <Route exact path="/" component={HomePageComponent}></Route>
+          <Route exact path="/" component={LoginPage}></Route>
         </Switch>
       </Router>
     </>

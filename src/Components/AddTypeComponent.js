@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { FlexContainer, Form, Label, Input, Button } from "../Styles/Styles";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
 import { getAnalytics, logEvent } from "firebase/analytics";
+import PrivRoute from "../Helpers/PrivRoute";
 
 function AddTypeComponent(props) {
   const { register, handleSubmit } = useForm();
@@ -30,19 +31,21 @@ function AddTypeComponent(props) {
   };
 
   return (
-    <FlexContainer
-      width="100%"
-      orientation="column"
-      fullHeight={true}
-      height="100vh"
-    >
-      <Label>Dodawanie typu</Label>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Label for="nazwaInput">Nazwa</Label>
-        <Input id="nazwaInput" {...register("nazwa")}></Input>
-        <Button>Dodaj</Button>
-      </Form>
-    </FlexContainer>
+    <PrivRoute>
+      <FlexContainer
+        width="100%"
+        orientation="column"
+        fullHeight={true}
+        height="100vh"
+      >
+        <Label>Dodawanie typu</Label>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <Label for="nazwaInput">Nazwa</Label>
+          <Input id="nazwaInput" {...register("nazwa")}></Input>
+          <Button>Dodaj</Button>
+        </Form>
+      </FlexContainer>
+    </PrivRoute>
   );
 }
 

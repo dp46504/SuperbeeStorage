@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { FlexContainer, Form, Label, Input, Button } from "../Styles/Styles";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
 import { getAnalytics, logEvent } from "firebase/analytics";
+import PrivRoute from "../Helpers/PrivRoute";
 
 function AddColorComponent(props) {
   const { register, handleSubmit } = useForm();
@@ -32,31 +33,33 @@ function AddColorComponent(props) {
   };
 
   return (
-    <FlexContainer
-      width="100%"
-      orientation="column"
-      fullHeight={true}
-      height="100vh"
-    >
-      <Label>Dodawanie koloru</Label>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Label for="nazwaInput">Nazwa</Label>
-        <Input id="nazwaInput" {...register("nazwa")}></Input>
-        <Label for="rgbInput">RGB (np. #ff55ff)</Label>
-        <Input
-          id="rgbInput"
-          {...register("rgb")}
-          onChange={(e) => {
-            setButtonColor(e.target.value);
-          }}
-        ></Input>
-        <Button
-          style={{ backgroundColor: buttonColor, borderColor: buttonColor }}
-        >
-          Dodaj
-        </Button>
-      </Form>
-    </FlexContainer>
+    <PrivRoute>
+      <FlexContainer
+        width="100%"
+        orientation="column"
+        fullHeight={true}
+        height="100vh"
+      >
+        <Label>Dodawanie koloru</Label>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <Label for="nazwaInput">Nazwa</Label>
+          <Input id="nazwaInput" {...register("nazwa")}></Input>
+          <Label for="rgbInput">RGB (np. #ff55ff)</Label>
+          <Input
+            id="rgbInput"
+            {...register("rgb")}
+            onChange={(e) => {
+              setButtonColor(e.target.value);
+            }}
+          ></Input>
+          <Button
+            style={{ backgroundColor: buttonColor, borderColor: buttonColor }}
+          >
+            Dodaj
+          </Button>
+        </Form>
+      </FlexContainer>
+    </PrivRoute>
   );
 }
 
