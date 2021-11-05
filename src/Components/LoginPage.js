@@ -6,6 +6,7 @@ import PrivComponent from "../Helpers/PrivComponent";
 function LoginPage(props) {
   const provider = new GoogleAuthProvider();
   const [loggedIn, setLoggedIn] = useState(getAuth().currentUser);
+  const [userName, setUserName] = useState(null);
 
   const Login = () => {
     const auth = getAuth();
@@ -19,10 +20,12 @@ function LoginPage(props) {
         // ...
         alert("Pomyślnie zalogowano");
         setLoggedIn(true);
+        setUserName(getAuth().currentUser);
       })
       .catch((error) => {
         alert(`Wystąpił błąd przy logowaniu: ${error.message}`);
         setLoggedIn(false);
+        setUserName(getAuth().currentUser);
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;

@@ -3,18 +3,29 @@ import { NavLink } from "react-router-dom";
 
 export const colors = {
   // Light
-  menuBackground: "#9b816f",
-  bodyBackground: "#e0c3bf",
+  // menuBackground: "#9b816f",
+  // bodyBackground: "#e0c3bf",
 
-  activeMenuItemText: "#e0c3bf",
-  nonactiveMenuItemText: "#af9885",
-  textColor: "#9b816f",
+  // activeMenuItemText: "#e0c3bf",
+  // nonactiveMenuItemText: "#af9885",
+  // textColor: "#9b816f",
 
-  inputBorder: "#af9885",
-  buttonBorder: "#af9885",
-  buttonBackground: "#af9885",
+  // inputBorder: "#af9885",
+  // buttonBorder: "#af9885",
+  // buttonBackground: "#af9885",
 
   // Dark
+  menuBackground: "#161617",
+  bodyBackground: "#171717",
+
+  activeMenuItemText: "#ffffff",
+  nonactiveMenuItemText: "#75b6e7",
+  textColor: "#75b6e7",
+  burgerMenuColor: "#75b6e7",
+
+  inputBorder: "#75b6e7",
+  buttonBorder: "#75b6e7",
+  buttonBackground: "#75b6e7",
 };
 
 export const GlobalStyles = createGlobalStyle`
@@ -95,9 +106,17 @@ export const Input = styled.input`
   margin: 0.5rem 0;
   border: 0.15rem solid ${colors.inputBorder};
   border-radius: 0.5rem;
+  background-color: transparent;
+  color: ${colors.textColor};
+  font-weight: 600;
+  outline: none;
+  transition: all 500ms;
   &[type="file"] {
     width: fit-content;
     padding: 0.4rem;
+  }
+  &:focus {
+    transform: scale(1.2);
   }
 `;
 
@@ -108,6 +127,11 @@ export const Select = styled.select`
   margin: 0.5rem 0;
   border: 0.15rem solid ${colors.inputBorder};
   border-radius: 0.5rem;
+  background-color: transparent;
+  color: ${colors.textColor};
+  outline: none;
+  transition: all 500ms;
+  font-weight: 600;
 
   /* ===== Disable arrow ===== */
   /* for Firefox */
@@ -117,6 +141,9 @@ export const Select = styled.select`
   /* for IE */
   &::-ms-expand {
     display: none;
+  }
+  &:focus {
+    background-color: ${colors.menuBackground};
   }
   /* ===== Disable arrow ===== */
 `;

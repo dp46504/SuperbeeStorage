@@ -9,7 +9,7 @@ export const styles = {
     bottom: "20px",
   },
   bmBurgerBars: {
-    background: "#373a47",
+    background: colors.burgerMenuColor,
   },
   bmBurgerBarsHover: {},
   bmCrossButton: {
@@ -30,6 +30,7 @@ export const styles = {
     padding: "2.5em 1.5em 0",
     fontSize: "1.15em",
     overflow: "hidden",
+    borderRight: `0.1rem solid ${colors.burgerMenuColor}`,
   },
   bmMorphShape: {
     fill: "#373a47",
