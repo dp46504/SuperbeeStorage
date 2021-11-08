@@ -21,7 +21,6 @@ function ListOfQrCodesComponent(props) {
   const [types, setTypes] = useState(null);
   const [sizes, setSizes] = useState(null);
   const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   let picturePreviewRef = useRef(null);
   let loaderRef = useRef(null);
@@ -136,7 +135,7 @@ function ListOfQrCodesComponent(props) {
     const showPicture = () => {
       loaderRef.current.style = "flex";
       if (itemObject.photo === null || itemObject.photo === undefined) {
-         itemObject.getItemPhoto();
+        itemObject.getItemPhoto();
         setTimeout(() => {
           picturePreviewRef.current.src = itemObject.photo;
           loaderRef.current.style.display = "none";
