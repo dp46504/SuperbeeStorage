@@ -258,13 +258,26 @@ function SellItemComponent(props) {
     let errorList = [];
     let errorID = [];
     list.forEach((item) => {
-      updateDoc(doc(collection(getFirestore(), "przedmioty"), item.id), {
-        ilosc: item.maxIlosc - item.ilosc,
-      }).catch((error) => {
+      // Skipping if provided number is larger than one in database
+      let tmpErrorCount = 0;
+      if (item.ilosc > item.maxIlosc) {
+        errorList.push(
+          `There is less of an item with id: ${item.id} in the databse`
+        );
         errorID.push(item.id);
-        errorList.push(error);
-        alert(`Error while updating values. ${error}`);
-      });
+        tmpErrorCount += 1;
+      }
+
+      // Skipping if provided number is larger than one in database
+      if (tmpErrorCount === 0) {
+        updateDoc(doc(collection(getFirestore(), "przedmioty"), item.id), {
+          ilosc: item.maxIlosc - item.ilosc,
+        }).catch((error) => {
+          errorID.push(item.id);
+          errorList.push(error);
+          alert(`Error while updating values. ${error}`);
+        });
+      }
     });
     if (errorList.length !== 0) {
       alert(
