@@ -23,6 +23,9 @@ export const colors = {
   textColor: "#75b6e7",
   burgerMenuColor: "#75b6e7",
 
+  special: "#4c3f69",
+  specialLight: "#6e5f8b",
+
   inputBorder: "#75b6e7",
   buttonBorder: "#75b6e7",
   buttonBackground: "#75b6e7",
@@ -31,7 +34,7 @@ export const colors = {
 export const GlobalStyles = createGlobalStyle`
 html, body{
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Lato', sans-serif;
     min-height: 100%;
     font-weight: bold;
     color:${colors.textColor};
@@ -57,10 +60,12 @@ export const SubMenu = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1.2rem 0;
+  width: 100%;
+  border: 0.2rem dashed ${colors.special};
   & ${MenuItem} {
     display: block;
     margin: 0.8rem 0;
-    color: ${colors.darkText};
+    color: ${colors.specialLight};
   }
 `;
 
@@ -115,8 +120,19 @@ export const Input = styled.input`
     width: fit-content;
     padding: 0.4rem;
   }
+
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
+
   &:focus {
     transform: scale(1.2);
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 `;
 
@@ -186,6 +202,42 @@ export const Loader = styled.div`
   padding: 1rem;
   top: calc(50% - 2rem);
   left: calc(50% - 3rem);
+  z-index: 10;
+  background-color: ${colors.bodyBackground};
 
   animation: ${PulseAnimation} 500ms both ease-in-out alternate infinite;
+`;
+
+export const Ul = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-left: 0.2rem solid ${colors.textColor};
+  border-right: 0.2rem solid ${colors.textColor};
+  border-radius: 0.5rem;
+`;
+
+export const Li = styled.li`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  & * {
+    margin: 0.5rem;
+  }
+`;
+
+export const PicturePreview = styled.img`
+  position: absolute;
+  width: 30rem;
+  max-width: 100%;
+  left: calc(50% - 15rem);
+  z-index: 2;
+  display: none;
 `;

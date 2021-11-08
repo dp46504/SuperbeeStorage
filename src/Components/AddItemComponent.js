@@ -85,9 +85,6 @@ function AddItemComponent(props) {
   }, []);
 
   const onSubmit = async (data) => {
-    console.log(
-      `${data.kolor} ${data.marka} ${data.projekt} ${data.rodzaj} ${data.rozmiar} ${data.ilosc}`
-    );
     try {
       // Uploading document to database
       const db = getFirestore();
