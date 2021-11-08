@@ -85,6 +85,10 @@ function AddItemComponent(props) {
   }, []);
 
   const onSubmit = async (data) => {
+    if (photo === null) {
+      alert("Upload a photo");
+      return 0;
+    }
     try {
       // Uploading document to database
       const db = getFirestore();
@@ -216,6 +220,7 @@ function AddItemComponent(props) {
               <Input
                 type="number"
                 id="iloscInput"
+                required
                 {...register("ilosc")}
               ></Input>
 
@@ -225,7 +230,9 @@ function AddItemComponent(props) {
                 id="photoInput"
                 {...register("photo")}
                 onChange={(e) => {
-                  setPhoto(e.target.files[0]);
+                  setPhoto(
+                    new Blob([e.target.files[0]], { type: "image/png" })
+                  );
                   fr.readAsDataURL(e.target.files[0]);
                 }}
               ></Input>

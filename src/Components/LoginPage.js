@@ -5,6 +5,7 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 function LoginPage(props) {
   const provider = new GoogleAuthProvider();
   const [loggedIn, setLoggedIn] = useState(getAuth().currentUser);
+  // eslint-disable-next-line
   const [userName, setUserName] = useState(null);
 
   const Login = () => {
