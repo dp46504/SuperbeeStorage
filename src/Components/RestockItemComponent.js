@@ -201,7 +201,7 @@ function RestockItemComponent(props) {
           picturePreviewRef.current.src = item.photo;
           loaderRef.current.style.display = "none";
           picturePreviewRef.current.style.display = "flex";
-        }, 500);
+        }, 1000);
       } else {
         picturePreviewRef.current.src = item.photo;
         loaderRef.current.style.display = "none";
@@ -217,15 +217,14 @@ function RestockItemComponent(props) {
       width: "3rem",
     };
 
+    const infoStyle = {
+      margin: 0,
+      fontSize: "1rem",
+    };
     const colorCubeStyle = {
       backgroundColor: item.kolor,
       width: "1rem",
       height: "1rem",
-    };
-
-    const infoStyle = {
-      margin: 0,
-      fontSize: "1rem",
     };
 
     const colorCube = <div style={colorCubeStyle}></div>;

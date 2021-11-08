@@ -43,6 +43,13 @@ html, body{
 *{box-sizing:border-box}
 `;
 
+export const QRCodeStyles = createGlobalStyle`
+html, body{
+  background-color: white;
+  color:black;
+  }
+`;
+
 export const MenuItem = styled(NavLink)`
   text-decoration: none;
   color: ${colors.nonactiveMenuItemText};
@@ -88,6 +95,11 @@ export const FlexContainer = styled.div`
     return props.orientation;
   }};
   min-height: 100vh;
+  flex-wrap: wrap;
+  & p {
+    margin: 0.1rem;
+    padding: 0;
+  }
 `;
 
 export const Form = styled.form`
@@ -239,4 +251,29 @@ export const PicturePreview = styled.img`
   left: calc(50% - 15rem);
   z-index: 2;
   display: none;
+`;
+
+export const QRCodesItemContainer = styled.div`
+  margin: 0.1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  border: 0.1rem solid black;
+`;
+
+export const QRCodesCode = styled.div`
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0.3rem;
+`;
+export const QRCodesDesc = styled.div`
+  width: fit-content;
+  height: fit-content;
 `;

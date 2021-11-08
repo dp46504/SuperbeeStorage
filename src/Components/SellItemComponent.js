@@ -201,7 +201,7 @@ function SellItemComponent(props) {
           picturePreviewRef.current.src = item.photo;
           loaderRef.current.style.display = "none";
           picturePreviewRef.current.style.display = "flex";
-        }, 500);
+        }, 1000);
       } else {
         picturePreviewRef.current.src = item.photo;
         loaderRef.current.style.display = "none";

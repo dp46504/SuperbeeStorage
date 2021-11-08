@@ -17,6 +17,7 @@ import HomePageComponent from "./Components/HomePageComponent";
 import PrivComponent from "./Helpers/PrivComponent";
 import SellItemComponent from "./Components/SellItemComponent";
 import RestockItemComponent from "./Components/RestockItemComponent";
+import ListOfQrCodesComponent from "./Components/ListOfQrCodesComponent";
 import { initializeApp } from "firebase/app";
 import LoginPage from "./Components/LoginPage";
 
@@ -67,6 +68,9 @@ function App() {
             <MenuItem exact activeStyle={ActiveMenuItem} to="/restockitem">
               Restock items
             </MenuItem>
+            <MenuItem exact activeStyle={ActiveMenuItem} to="/listofqrcodes">
+              QR Codes
+            </MenuItem>
           </PrivComponent>
           <MenuItem exact activeStyle={ActiveMenuItem} to="/">
             Login Page
@@ -79,6 +83,11 @@ function App() {
           <Route exact path="/addtype" component={AddTypeComponent}></Route>
           <Route exact path="/additem" component={AddItemComponent}></Route>
           <Route exact path="/sellitem" component={SellItemComponent}></Route>
+          <Route
+            exact
+            path="/listofqrcodes"
+            component={ListOfQrCodesComponent}
+          ></Route>
           <Route
             exact
             path="/restockitem"
