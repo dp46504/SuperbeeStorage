@@ -98,7 +98,7 @@ function AddItemComponent(props) {
         marka: data.marka,
         projekt: data.projekt,
         rodzaj: data.rodzaj,
-        ilosc: data.ilosc,
+        ilosc: parseInt(data.ilosc),
       });
       alert(`Added new Item to database with ID: ${docRef.id}`);
 

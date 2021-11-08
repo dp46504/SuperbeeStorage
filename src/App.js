@@ -16,6 +16,7 @@ import AddProjectComponent from "./Components/AddProjectComponent";
 import HomePageComponent from "./Components/HomePageComponent";
 import PrivComponent from "./Helpers/PrivComponent";
 import SellItemComponent from "./Components/SellItemComponent";
+import RestockItemComponent from "./Components/RestockItemComponent";
 import { initializeApp } from "firebase/app";
 import LoginPage from "./Components/LoginPage";
 
@@ -63,6 +64,9 @@ function App() {
             <MenuItem exact activeStyle={ActiveMenuItem} to="/sellitem">
               Sell items
             </MenuItem>
+            <MenuItem exact activeStyle={ActiveMenuItem} to="/restockitem">
+              Restock items
+            </MenuItem>
           </PrivComponent>
           <MenuItem exact activeStyle={ActiveMenuItem} to="/">
             Login Page
@@ -75,6 +79,11 @@ function App() {
           <Route exact path="/addtype" component={AddTypeComponent}></Route>
           <Route exact path="/additem" component={AddItemComponent}></Route>
           <Route exact path="/sellitem" component={SellItemComponent}></Route>
+          <Route
+            exact
+            path="/restockitem"
+            component={RestockItemComponent}
+          ></Route>
           <Route
             exact
             path="/addproject"

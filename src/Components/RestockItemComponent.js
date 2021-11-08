@@ -22,7 +22,7 @@ import PrivRoute from "../Helpers/PrivRoute";
 import DisplayProperties from "../Helpers/DisplayProperties";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
-function SellItemComponent(props) {
+function RestockItemComponent(props) {
   // States
   const [result, setResult] = useState(null);
   const [list, setList] = useState([]);
@@ -237,7 +237,6 @@ function SellItemComponent(props) {
         <Input
           style={inputStyle}
           type="number"
-          max={item.maxIlosc}
           min={0}
           id={item.id}
           onChange={(e) => {
@@ -258,26 +257,13 @@ function SellItemComponent(props) {
     let errorList = [];
     let errorID = [];
     list.forEach((item) => {
-      // Skipping if provided number is larger than one in database
-      let tmpErrorCount = 0;
-      if (item.ilosc > item.maxIlosc) {
-        errorList.push(
-          `There is less of an item with id: ${item.id} in the databse`
-        );
+      updateDoc(doc(collection(getFirestore(), "przedmioty"), item.id), {
+        ilosc: parseInt(item.maxIlosc + item.ilosc),
+      }).catch((error) => {
         errorID.push(item.id);
-        tmpErrorCount += 1;
-      }
-
-      // Skipping if provided number is larger than one in database
-      if (tmpErrorCount === 0) {
-        updateDoc(doc(collection(getFirestore(), "przedmioty"), item.id), {
-          ilosc: parseInt(item.maxIlosc - item.ilosc),
-        }).catch((error) => {
-          errorID.push(item.id);
-          errorList.push(error);
-          alert(`Error while updating values. ${error}`);
-        });
-      }
+        errorList.push(error);
+        alert(`Error while updating values. ${error}`);
+      });
     });
     if (errorList.length !== 0) {
       alert(
@@ -309,7 +295,7 @@ function SellItemComponent(props) {
         <Loader ref={loaderRef} style={{ display: "none" }}>
           Loading Photo
         </Loader>
-        <Label>Sprzedaż</Label>
+        <Label>Restock</Label>
         <QrReader
           delay={500}
           onError={handleError}
@@ -327,7 +313,7 @@ function SellItemComponent(props) {
         </Ul>
         {list.length === 0 ? null : (
           <Button style={{ width: "80%" }} onClick={handleSubmit}>
-            Sprzedaj
+            Restock !
           </Button>
         )}
       </FlexContainer>
@@ -335,4 +321,4 @@ function SellItemComponent(props) {
   );
 }
 
-export default SellItemComponent;
+export default RestockItemComponent;
