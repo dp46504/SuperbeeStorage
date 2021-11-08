@@ -66,23 +66,26 @@ function LoginPage(props) {
           ? getAuth().currentUser.displayName
           : "NIEZALOGOWANY"}
       </Label>
-      <Button
-        style={{ width: "80%" }}
-        onClick={() => {
-          Login();
-        }}
-      >
-        Login
-      </Button>
 
-      <Button
-        style={{ width: "80%" }}
-        onClick={() => {
-          Logout();
-        }}
-      >
-        Logout
-      </Button>
+      {loggedIn === null ? (
+        <Button
+          style={{ width: "80%" }}
+          onClick={() => {
+            Login();
+          }}
+        >
+          Login
+        </Button>
+      ) : (
+        <Button
+          style={{ width: "80%" }}
+          onClick={() => {
+            Logout();
+          }}
+        >
+          Logout
+        </Button>
+      )}
     </FlexContainer>
   );
 }
