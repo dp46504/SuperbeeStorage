@@ -257,8 +257,9 @@ function RestockItemComponent(props) {
     let errorList = [];
     let errorID = [];
     list.forEach((item) => {
+      let liczba = parseInt(item.maxIlosc) + parseInt(item.ilosc);
       updateDoc(doc(collection(getFirestore(), "przedmioty"), item.id), {
-        ilosc: parseInt(item.maxIlosc + item.ilosc),
+        ilosc: liczba,
       }).catch((error) => {
         errorID.push(item.id);
         errorList.push(error);
