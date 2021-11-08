@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, FlexContainer, Label } from "../Styles/Styles";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+  onAuthStateChanged,
+} from "firebase/auth";
 
 function LoginPage(props) {
   const provider = new GoogleAuthProvider();
   const [loggedIn, setLoggedIn] = useState(getAuth().currentUser);
   // eslint-disable-next-line
   const [userName, setUserName] = useState(null);
+
+  useEffect(() => {
+    onAuthStateChanged(getAuth(), (user) => {
+      setLoggedIn(user);
+    });
+  }, []);
 
   const Login = () => {
     const auth = getAuth();
