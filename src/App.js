@@ -60,10 +60,10 @@ function App() {
             <MenuItem exact activeStyle={ActiveMenuItem} to="/itemlist">
               Item List
             </MenuItem>
+            <MenuItem exact activeStyle={ActiveMenuItem} to="/sellitem">
+              Sell items
+            </MenuItem>
           </PrivComponent>
-          <MenuItem exact activeStyle={ActiveMenuItem} to="/sellitem">
-            Sell items
-          </MenuItem>
           <MenuItem exact activeStyle={ActiveMenuItem} to="/">
             Login Page
           </MenuItem>

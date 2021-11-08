@@ -18,6 +18,7 @@ import {
   getDocs,
   updateDoc,
 } from "firebase/firestore";
+import PrivRoute from "../Helpers/PrivRoute";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 function SellItemComponent(props) {
@@ -300,36 +301,38 @@ function SellItemComponent(props) {
   };
 
   return (
-    <FlexContainer orientation="column" fullHeight>
-      <PicturePreview
-        ref={picturePreviewRef}
-        onClick={disablePicturePreview}
-      ></PicturePreview>
-      <Loader ref={loaderRef} style={{ display: "none" }}>
-        Loading Photo
-      </Loader>
-      <Label>Sprzedaż</Label>
-      <QrReader
-        delay={500}
-        onError={handleError}
-        onScan={handleScan}
-        style={{ width: "50%" }}
-      ></QrReader>
-      <Label style={{ height: "2rem" }}>{result}</Label>
-      <Button style={{ width: "80%" }} onClick={handleScanToList}>
-        Dodaj do listy
-      </Button>
-      <Ul>
-        {list.map((item) => {
-          return getDomObjectOfItem(item);
-        })}
-      </Ul>
-      {list.length === 0 ? null : (
-        <Button style={{ width: "80%" }} onClick={handleSubmit}>
-          Sprzedaj
+    <PrivRoute>
+      <FlexContainer orientation="column" fullHeight>
+        <PicturePreview
+          ref={picturePreviewRef}
+          onClick={disablePicturePreview}
+        ></PicturePreview>
+        <Loader ref={loaderRef} style={{ display: "none" }}>
+          Loading Photo
+        </Loader>
+        <Label>Sprzedaż</Label>
+        <QrReader
+          delay={500}
+          onError={handleError}
+          onScan={handleScan}
+          style={{ width: "50%" }}
+        ></QrReader>
+        <Label style={{ height: "2rem" }}>{result}</Label>
+        <Button style={{ width: "80%" }} onClick={handleScanToList}>
+          Dodaj do listy
         </Button>
-      )}
-    </FlexContainer>
+        <Ul>
+          {list.map((item) => {
+            return getDomObjectOfItem(item);
+          })}
+        </Ul>
+        {list.length === 0 ? null : (
+          <Button style={{ width: "80%" }} onClick={handleSubmit}>
+            Sprzedaj
+          </Button>
+        )}
+      </FlexContainer>
+    </PrivRoute>
   );
 }
 
