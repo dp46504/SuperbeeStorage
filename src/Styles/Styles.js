@@ -79,6 +79,8 @@ export const FlexContainer = styled.div`
   width: ${(props) => {
     return props.width;
   }};
+  max-width: 900px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
