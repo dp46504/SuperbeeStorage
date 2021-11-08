@@ -219,9 +219,6 @@ export const Ul = styled.ul`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-left: 0.2rem solid ${colors.textColor};
-  border-right: 0.2rem solid ${colors.textColor};
-  border-radius: 0.5rem;
 `;
 
 export const Li = styled.li`
