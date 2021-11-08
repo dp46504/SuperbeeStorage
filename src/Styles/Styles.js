@@ -66,7 +66,8 @@ export const SubMenu = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1.2rem 0;
+  padding: 0.5rem 0;
+  margin: 0;
   width: 100%;
   border: 0.2rem dashed ${colors.special};
   & ${MenuItem} {
