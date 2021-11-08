@@ -255,13 +255,35 @@ function SellItemComponent(props) {
   };
 
   const handleSubmit = () => {
+    let errorList = [];
+    let errorID = [];
     list.forEach((item) => {
       updateDoc(doc(collection(getFirestore(), "przedmioty"), item.id), {
         ilosc: item.maxIlosc - item.ilosc,
       }).catch((error) => {
+        errorID.push(item.id);
+        errorList.push(error);
         alert(`Error while updating values. ${error}`);
       });
     });
+    if (errorList.length !== 0) {
+      alert(
+        errorList.reduce((acc, current) => {
+          return acc + " | " + current;
+        })
+      );
+
+      // Deleting from list items that succesfully updates
+      let comp = (value) => {
+        return errorID.includes(value.id);
+      };
+
+      // Deleting from list items that succesfully updates
+      setList(list.filter(comp));
+    } else {
+      alert(`Succesfuly updated state of a database`);
+      setList([]);
+    }
   };
 
   return (
