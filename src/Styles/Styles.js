@@ -277,4 +277,5 @@ export const QRCodesCode = styled.div`
 export const QRCodesDesc = styled.div`
   width: fit-content;
   height: fit-content;
+  -webkit-print-color-adjust: exact;
 `;
