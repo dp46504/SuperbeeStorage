@@ -32,49 +32,58 @@ function ItemListComponent(props) {
       const projectsRef = await getDocs(collection(db, "projekty"));
       const typesRef = await getDocs(collection(db, "rodzaje"));
       const sizesRef = await getDocs(collection(db, "rozmiary"));
-      const itemsRef = await getDocs(collection(db, "przedmioty"));
-
+      
       let kolory = [];
       let marki = [];
       let projekty = [];
       let rodzaje = [];
       let rozmiary = [];
-      let przedmioty = [];
-
+      
       colorsRef.forEach((item) => {
         kolory.push({ id: item.id, data: item.data() });
       });
-
+      
       brandsRef.forEach((item) => {
         marki.push({ id: item.id, data: item.data() });
       });
-
+      
       projectsRef.forEach((item) => {
         projekty.push({ id: item.id, data: item.data() });
       });
-
+      
       typesRef.forEach((item) => {
         rodzaje.push({ id: item.id, data: item.data() });
       });
-
+      
       sizesRef.forEach((item) => {
         rozmiary.push({ id: item.id, data: item.data() });
       });
-
-      itemsRef.forEach((item) => {
-        przedmioty.push({ id: item.id, data: item.data() });
-      });
-
+      
+      
       setColors(kolory);
       setBrands(marki);
       setProjects(projekty);
       setTypes(rodzaje);
       setSizes(rozmiary);
-      setItems(przedmioty);
     };
+
+    const loadItems=async()=>{
+      const db = getFirestore();
+
+      const itemsRef = await getDocs(collection(db, "przedmioty"));
+      let przedmioty = [];
+
+      itemsRef.forEach((item) => {
+        przedmioty.push( new Item({ id: item.id, data: item.data() }) );
+      });
+
+      setItems(przedmioty);
+
+    }
     try{
       getInfo();
       setTimeout(() => {
+        loadItems();
         setLoading(false);
       }, 1000);
     } catch (e) {
@@ -82,6 +91,7 @@ function ItemListComponent(props) {
     }
     
   }, []);
+  
   // Item class to download and store data about item
   class Item {
     constructor(item) {
@@ -129,8 +139,7 @@ function ItemListComponent(props) {
     };
   }
 
-  const mappingItem = (item, index) => {
-    let itemObject = new Item(item);
+  const mappingItem = (itemObject, index) => {
 
     const showPicture = () => {
       loaderRef.current.style = "flex";
