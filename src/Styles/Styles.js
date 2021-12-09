@@ -293,7 +293,7 @@ width: 100%;
 border-bottom: 0.1rem solid ${colors.specialLight};
 
 &:first-of-type{
-  border-bottom: 0.1rem solid ${colors.buttonBorder};
+  color: ${colors.specialLight};
 }
 
 & div{
