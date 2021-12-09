@@ -3,7 +3,7 @@ import { FlexContainer, Label, Loader } from "../Styles/Styles";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import PrivRoute from "../Helpers/PrivRoute";
 
-function HomePageComponent(props) {
+function ItemListComponent(props) {
   const [loading, setLoading] = useState(true);
   const [colors, setColors] = useState(null);
   const [brands, setBrands] = useState(null);
@@ -167,4 +167,4 @@ function HomePageComponent(props) {
   );
 }
 
-export default HomePageComponent;
+export default ItemListComponent;

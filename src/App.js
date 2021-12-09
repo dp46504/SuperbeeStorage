@@ -13,7 +13,7 @@ import AddSizeComponent from "./Components/AddSizeComponent";
 import AddBrandComponent from "./Components/AddBrandComponent";
 import AddTypeComponent from "./Components/AddTypeComponent";
 import AddProjectComponent from "./Components/AddProjectComponent";
-import HomePageComponent from "./Components/HomePageComponent";
+import ItemListComponent from "./Components/ItemListComponent";
 import PrivComponent from "./Helpers/PrivComponent";
 import SellItemComponent from "./Components/SellItemComponent";
 import RestockItemComponent from "./Components/RestockItemComponent";
@@ -102,7 +102,7 @@ function App() {
             path="/addproject"
             component={AddProjectComponent}
           ></Route>
-          <Route exact path="/itemlist" component={HomePageComponent}></Route>
+          <Route exact path="/itemlist" component={ItemListComponent}></Route>
           <Route exact path="/" component={LoginPage}></Route>
         </Switch>
       </Router>
