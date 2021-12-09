@@ -303,12 +303,9 @@ border-bottom: 0.1rem solid ${colors.specialLight};
   font-size:0.9rem;
 }
 
-& div:nth-child(2n){
-  border-left: 0.1rem solid ${colors.specialLight};
+& div:nth-child(n):not(div:last-child){
   border-right: 0.1rem solid ${colors.specialLight};
 }
 
-& div:first-of-type, & div:last-of-type{
-  border:none;
-}
+
 `
