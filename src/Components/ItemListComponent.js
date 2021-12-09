@@ -156,7 +156,7 @@ function ItemListComponent(props) {
       <div>{itemObject.kolor}</div>
       <div>{itemObject.rozmiar}</div>
       <div>{itemObject.projekt}</div>
-      <div>{itemObject.ilosc}</div>
+      <div>{itemObject.maxIlosc}</div>
       <div onClick={()=>{showPicture()}}>📷</div>
       </ItemListRow>
     );
