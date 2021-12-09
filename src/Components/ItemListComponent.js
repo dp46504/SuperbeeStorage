@@ -157,6 +157,7 @@ function ItemListComponent(props) {
       <div>{itemObject.rozmiar}</div>
       <div>{itemObject.projekt}</div>
       <div>{itemObject.ilosc}</div>
+      <div onClick={()=>{showPicture()}}>📷</div>
       </ItemListRow>
     );
   };
@@ -270,6 +271,7 @@ function ItemListComponent(props) {
                   <div>rozmiar</div>
                   <div>projekt</div>
                   <div>ilosc</div>
+                  <div>photo</div>
                 </ItemListRow>
                 {items!==null && items.map((item,index)=>{
                   return mappingItem(item, index)
