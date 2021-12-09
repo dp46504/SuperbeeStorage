@@ -81,7 +81,7 @@ function AddItemComponent(props) {
       }
     };
 
-    // downloadItems();
+    downloadItems();
   }, []);
 
   const onSubmit = async (data) => {

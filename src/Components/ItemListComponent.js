@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlexContainer, Label, Loader, Form, Select } from "../Styles/Styles";
+import { FlexContainer, Label, Loader, Form, Select, Button } from "../Styles/Styles";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import PrivRoute from "../Helpers/PrivRoute";
 import { useForm } from "react-hook-form";
@@ -90,8 +90,8 @@ function ItemListComponent(props) {
             fullHeight={true}
             height="100vh"
           >
-            <Form onSubmit={handleSubmit(onSubmit)}>
               <Label>Filters</Label>
+            <Form orientation="row" width="100%" onSubmit={handleSubmit(onSubmit)}>
               {/* Color Filter */}
               <Select
                 id="colorInput"
@@ -164,8 +164,8 @@ function ItemListComponent(props) {
                   rozmiar
                 </option>
               </Select>
+              <Button>Filtruj</Button>
               </Form>
-              
           </FlexContainer>
         </PrivRoute>
       )}

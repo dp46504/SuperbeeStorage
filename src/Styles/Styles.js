@@ -105,10 +105,14 @@ export const FlexContainer = styled.div`
 
 export const Form = styled.form`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${props=>{
+    return props.orientation?props.orientation:"column"
+  }};
   justify-content: center;
   align-items: center;
-  width: 70%;
+  width: ${props=>{
+    return props.width?props.width:"70%";
+  }};
   & img {
     width: fit-content;
   }
