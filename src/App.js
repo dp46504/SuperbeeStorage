@@ -38,6 +38,7 @@ function App() {
       <Router>
         <Menu isOpen={false} styles={styles}>
           <PrivComponent>
+            {/* SubMenu */}
             <SubMenu>
               <MenuItem exact activeStyle={ActiveMenuItem} to="/addcolor">
                 Add new Color
@@ -51,7 +52,6 @@ function App() {
               <MenuItem exact activeStyle={ActiveMenuItem} to="/addtype">
                 Add new Type
               </MenuItem>
-
               <MenuItem exact activeStyle={ActiveMenuItem} to="/addproject">
                 Add new Project
               </MenuItem>
@@ -59,6 +59,9 @@ function App() {
                 Add new Item
               </MenuItem>
             </SubMenu>
+              {/* End SubMenu */}
+
+              {/* Actual Menu */}
             <MenuItem exact activeStyle={ActiveMenuItem} to="/itemlist">
               Item List
             </MenuItem>
@@ -75,6 +78,7 @@ function App() {
           <MenuItem exact activeStyle={ActiveMenuItem} to="/">
             Login Page
           </MenuItem>
+              {/* End Actual Menu */}
         </Menu>
         <Switch>
           <Route exact path="/addcolor" component={AddColorComponent}></Route>
