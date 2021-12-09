@@ -283,3 +283,32 @@ export const QRCodesDesc = styled.div`
   height: fit-content;
   -webkit-print-color-adjust: exact;
 `;
+
+export const ItemListRow = styled.div`
+display: flex;
+flex-direction: row;
+justify-content:space-evenly;
+align-items: center;
+width: 100%;
+border-bottom: 0.1rem solid ${colors.specialLight};
+
+&:first-of-type{
+  border-bottom: 0.1rem solid ${colors.buttonBorder};
+}
+
+& div{
+  padding:0.5rem 0rem;
+  flex:0 1 12%;
+  text-align: center;
+  font-size:0.9rem;
+}
+
+& div:nth-child(2n){
+  border-left: 0.1rem solid ${colors.specialLight};
+  border-right: 0.1rem solid ${colors.specialLight};
+}
+
+& div:first-of-type, & div:last-of-type{
+  border:none;
+}
+`
