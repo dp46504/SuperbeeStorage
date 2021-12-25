@@ -173,19 +173,9 @@ function ListOfQrCodesComponent(props) {
       <Loader ref={loaderRef} style={{ display: "none", color: "white" }}>
         Loading Photo
       </Loader>
-      <FlexContainer
-        style={{
-          width: "100%",
-          maxWidth: "100vw",
-          minHeight: "fit-content",
-          justifyContent: "flex-start",
-          alignItems: "flex-start",
-        }}
-      >
-        {items.map((item) => {
-          return mappingItem(item);
-        })}
-      </FlexContainer>
+      {items.map((item) => {
+        return mappingItem(item);
+      })}
     </PrivRoute>
   );
 }

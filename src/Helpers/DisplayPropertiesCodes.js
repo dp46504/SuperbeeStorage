@@ -5,6 +5,7 @@ const displayPropertiesCodes = (item) => {
     backgroundColor: item.kolor,
     width: "1rem",
     height: "1rem",
+    border: "1px solid black",
   };
 
   const colorCube = <div style={colorCubeStyle}></div>;
@@ -14,7 +15,7 @@ const displayPropertiesCodes = (item) => {
       <p>{item.rodzaj}</p>
       <p>{item.projekt}</p>
       <p>{item.marka}</p>
-      <p> {item.rozmiar}</p>
+      <p>{item.rozmiar}</p>
       <p>{item.kolor}</p>
       {colorCube}
     </FlexContainer>

@@ -44,10 +44,12 @@ html, body{
 `;
 
 export const QRCodeStyles = createGlobalStyle`
-html, body{
+html, body, #root{
   background-color: white;
   color:black;
-  }
+  break-inside: avoid;
+  display: block;
+}
 `;
 
 export const MenuItem = styled(NavLink)`
@@ -90,6 +92,7 @@ export const FlexContainer = styled.div`
   max-width: 900px;
   margin: 0 auto;
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   flex-direction: ${(props) => {
@@ -265,8 +268,10 @@ export const QRCodesItemContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: fit-content;
+  min-width: 300px;
   height: fit-content;
   border: 0.1rem solid black;
+  break-inside: avoid;
 `;
 
 export const QRCodesCode = styled.div`
@@ -277,11 +282,13 @@ export const QRCodesCode = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0.3rem;
+  break-inside: avoid;
 `;
 export const QRCodesDesc = styled.div`
   width: fit-content;
   height: fit-content;
   -webkit-print-color-adjust: exact;
+  break-inside: avoid;
 `;
 
 export const ItemListRow = styled.div`
