@@ -23,6 +23,7 @@ function ItemListComponent(props) {
   const [types, setTypes] = useState(null);
   const [sizes, setSizes] = useState(null);
   const [items, setItems] = useState(null);
+  const [itemsList, setItemsList] = useState(null);
 
   let picturePreviewRef = useRef(null);
   let loaderRef = useRef(null);
@@ -80,6 +81,7 @@ function ItemListComponent(props) {
       setTypes(rodzaje);
       setSizes(rozmiary);
       setItems(przedmioty);
+      setItemsList(przedmioty);
     };
 
     try {
@@ -179,7 +181,52 @@ function ItemListComponent(props) {
   };
 
   const onSubmit = async (data) => {
-    console.log(items);
+    const kolorId = data.kolor === "kolor" ? null : data.kolor;
+    const markaId = data.marka === "marka" ? null : data.marka;
+    const projektId = data.projekt === "projekt" ? null : data.projekt;
+    const rodzajId = data.rodzaj === "rodzaj" ? null : data.rodzaj;
+    const rozmiarId = data.rozmiar === "rozmiar" ? null : data.rozmiar;
+
+    const colorComparator = (item) => {
+      return item.data.kolor === kolorId;
+    };
+    const brandComparator = (item) => {
+      return item.data.marka === markaId;
+    };
+    const projectComparator = (item) => {
+      return item.data.projekt === projektId;
+    };
+    const typeComparator = (item) => {
+      return item.data.rodzaj === rodzajId;
+    };
+    const sizeComparator = (item) => {
+      return item.data.rozmiar === rozmiarId;
+    };
+
+    let allItems = items;
+
+    if (kolorId) {
+      allItems = allItems.filter(colorComparator);
+      console.log("kolor");
+    }
+    if (markaId) {
+      allItems = allItems.filter(brandComparator);
+      console.log("marka");
+    }
+    if (projektId) {
+      allItems = allItems.filter(projectComparator);
+      console.log("projekt");
+    }
+    if (rozmiarId) {
+      allItems = allItems.filter(sizeComparator);
+      console.log("rozmiar");
+    }
+    if (rodzajId) {
+      allItems = allItems.filter(typeComparator);
+      console.log("rodzaj");
+    }
+
+    setItemsList(allItems);
   };
 
   return (
@@ -263,7 +310,7 @@ function ItemListComponent(props) {
                     );
                   })}
                 <option key={null} value={null} selected>
-                  typ
+                  rodzaj
                 </option>
               </Select>
 
@@ -294,8 +341,8 @@ function ItemListComponent(props) {
               <div>ilosc</div>
               <div>photo</div>
             </ItemListRow>
-            {items !== null &&
-              items.map((item, index) => {
+            {itemsList !== null &&
+              itemsList.map((item, index) => {
                 return mappingItem(item, index);
               })}
           </FlexContainer>
