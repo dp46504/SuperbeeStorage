@@ -105,13 +105,13 @@ export const FlexContainer = styled.div`
 
 export const Form = styled.form`
   display: flex;
-  flex-direction: ${props=>{
-    return props.orientation?props.orientation:"column"
+  flex-direction: ${(props) => {
+    return props.orientation ? props.orientation : "column";
   }};
   justify-content: center;
   align-items: center;
-  width: ${props=>{
-    return props.width?props.width:"70%";
+  width: ${(props) => {
+    return props.width ? props.width : "70%";
   }};
   & img {
     width: fit-content;
@@ -285,27 +285,26 @@ export const QRCodesDesc = styled.div`
 `;
 
 export const ItemListRow = styled.div`
-display: flex;
-flex-direction: row;
-justify-content:space-evenly;
-align-items: center;
-width: 100%;
-border-bottom: 0.1rem solid ${colors.specialLight};
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  border-bottom: 0.1rem solid ${colors.specialLight};
 
-&:first-of-type{
-  color: ${colors.specialLight};
-}
+  &:first-of-type {
+    color: ${colors.specialLight};
+  }
 
-& div{
-  padding:0.5rem 0rem;
-  flex:0 1 12%;
-  text-align: center;
-  font-size:0.9rem;
-}
+  & div {
+    padding: 0.5rem 0rem;
+    flex: 1 0 5%;
+    text-align: center;
+    font-size: 0.9rem;
+    overflow-x: hidden;
+  }
 
-& div:nth-child(n):not(div:last-child){
-  border-right: 0.1rem solid ${colors.specialLight};
-}
-
-
-`
+  & div:nth-child(n):not(div:last-child) {
+    border-right: 0.1rem solid ${colors.specialLight};
+  }
+`;
