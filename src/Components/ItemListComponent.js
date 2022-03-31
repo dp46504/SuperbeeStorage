@@ -148,6 +148,7 @@ function ItemListComponent(props) {
       loaderRef.current.style = "flex";
       if (itemObject.photo === null || itemObject.photo === undefined) {
         itemObject.getItemPhoto();
+
         setTimeout(() => {
           picturePreviewRef.current.src = itemObject.photo;
           loaderRef.current.style.display = "none";

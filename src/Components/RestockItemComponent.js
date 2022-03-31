@@ -21,6 +21,7 @@ import {
 import PrivRoute from "../Helpers/PrivRoute";
 import DisplayProperties from "../Helpers/DisplayProperties";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 function RestockItemComponent(props) {
   // States
@@ -259,11 +260,24 @@ function RestockItemComponent(props) {
       let liczba = parseInt(item.maxIlosc) + parseInt(item.ilosc);
       updateDoc(doc(collection(getFirestore(), "przedmioty"), item.id), {
         ilosc: liczba,
-      }).catch((error) => {
-        errorID.push(item.id);
-        errorList.push(error);
-        alert(`Error while updating values. ${error}`);
-      });
+      })
+        .then((result) => {
+          const analytics = getAnalytics();
+          logEvent(analytics, "restock_item", {
+            item: {
+              kolor: item.kolorNazwa,
+              marka: item.marka,
+              projekt: item.projekt,
+              rodzaj: item.rodzaj,
+              rozmiar: item.rozmiar,
+            },
+          });
+        })
+        .catch((error) => {
+          errorID.push(item.id);
+          errorList.push(error);
+          alert(`Error while updating values. ${error}`);
+        });
     });
     if (errorList.length !== 0) {
       alert(
